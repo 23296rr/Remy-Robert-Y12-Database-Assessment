@@ -8,7 +8,6 @@
 // Return: n/a
 /**************************************************************/
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyD7d7ogP89GtXNK8gJzAFIJazeiA_UgEGM",
   authDomain: "pin-that-ball-b5570.firebaseapp.com",
