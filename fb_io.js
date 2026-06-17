@@ -8,8 +8,12 @@
  **************************************************************/
 var authenticationListener;
 
+export let signingIn = false
 export let signedIn = false;
 export let GLOBAL_user;
+
+window.fb_login = fb_login
+window.fb_logout = fb_logout
 
 window.onload = (event) => {
   fb_login()
@@ -35,11 +39,13 @@ function fb_handleLogin(_user) {
 
 // Run the Google login popup
 function fb_popupLogin() {
+  signingIn = true
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then((result) => {
     GLOBAL_user = result.user; // Save the user object to a global variable
     console.log("User has logged in", GLOBAL_user["displayName"])
     signedIn = true
+    signingIn = false
     console.log(signedIn)
     console.log(GLOBAL_user)
   });
@@ -53,5 +59,3 @@ function fb_logout() {
     console.log(signedIn)
 }
 
-window.fb_login = fb_login
-window.fb_logout = fb_logout

@@ -9,8 +9,8 @@
   <title>Pin the Dash</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="">
-  
-  <!-- firebase start ****************************************-->
+
+<!-- firebase start ****************************************-->
   <!-- Firebase App (core Firebase SDK) is always required & must be listed 1st -->
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
   <!-- Add Firebase products that you want to use -->
@@ -25,14 +25,20 @@
   <script src="https://p5play.org/v3/p5play.js"></script>
 
   <script src="fb_setup.js"></script>
-
+  <script type="module" src="fb_io.js"></script>
+  <script type="module" src="landing.js"></script>
 </head>
-<button onclick="dwadwasd()">dwsdwsasd</button>
+
 <!--***************************************************
   BODY
 ****************************************************-->
 <body>
-  <script src="landing.js"></script>
+  <h1 id="title">Pin That Ball!</h1>
+  <h2 id="subtitle">+ Geodash</h2>
+  <button onclick="play()">Play</button>
+  <button onclick="submitForm()">Sign In</button>
+  <button onclick="fb_login()">Login</button>
+  <button onclick="fb_logout()">Logout of Google</button>
 </body>
 </html>
 <!--***************************************************
