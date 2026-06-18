@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="12COMP P5.play">
+  <meta name="keywords" content="12COMP, P5.play">
+  <meta name="author" content="Mr Britton">
+  <title>Pin the Dash</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="">
+
+<!-- firebase start ****************************************-->
+  <!-- Firebase App (core Firebase SDK) is always required & must be listed 1st -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+  <!-- firebase end ******************************************-->
+  
+  <!-- P5.js & P5.play ***************************** -->
+  <script src="https://q5js.org/q5.js"></script>
+  <script src="https://p5play.org/v3/planck.min.js"></script>
+  <script src="https://p5play.org/v3/p5play.js"></script>
+
+  <script src="fb_setup.js"></script>
+  <script type="module" src="fb_io.js"></script>
+  <script type="module" src="library.js"></script>
+</head>
+
+<!--***************************************************
+  BODY
+****************************************************-->
+<body>
+  <h1 id="title">Pin That Ball!</h1>
+  <h2 id="subtitle">+ Geodash</h2>
+  <button onclick="pinthatball()">Play</button>
+  <button onclick="geodash()">Sign In</button>
+  <button onclick="fb_login()">Login</button>
+  <button onclick="fb_logout()">Logout of Google</button>
+</body>
+</html>
+<!--***************************************************
+  END OF INDEX.HTML
+****************************************************-->
