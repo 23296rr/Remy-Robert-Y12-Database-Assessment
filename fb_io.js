@@ -56,6 +56,7 @@ function fb_logout() {
     firebase.auth().signOut();
     console.log("hopeuflly logged out")
     signedIn = false
+    signingIn = false
     console.log(signedIn)
 }
 

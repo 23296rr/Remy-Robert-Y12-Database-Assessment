@@ -14,7 +14,6 @@ function submitForm() {
 }
 
 function play() {
-  
   if (signingIn == false) {
     console.log("can play")
     window.location.href = "library.html"
@@ -22,3 +21,4 @@ function play() {
     console.log("must wait till finished signing in")
   }
 }
+

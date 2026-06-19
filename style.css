@@ -1,11 +1,11 @@
-h1 {
+#title {
     padding-left: 39%;
     font-size: 450%;
     margin-bottom: 0px;
     margin-top: 10%;
 }
 
-h2 {
+#subtitle  {
     padding-left: 60%;
     font-size: 300%;
     margin-top: 0px;
@@ -18,7 +18,8 @@ h2 {
   font-size: 20px;
   position: fixed;
   bottom: 150px;
-
+  padding-left: 30%;
+  padding-right: 30%;
 }
 
 #instructions2 {

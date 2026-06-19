@@ -24,20 +24,17 @@
   <script src="https://p5play.org/v3/planck.min.js"></script>
   <script src="https://p5play.org/v3/p5play.js"></script>
 
-  <script src="fb_setup.js"></script>
-  <script type="module" src="fb_io.js"></script>
-  <script src="library.js"></script>
+  <script src="geodash.js"></script>
 </head>
 
 <!--***************************************************
   BODY
 ****************************************************-->
 <body>
-  <h1 id="title">Library</h1>
-  <button onclick="pinthatball()">Pin That Ball</button>
-  <button onclick="geodash()">Geodash</button>
-  <button onclick="fb_login()">Login</button>
-  <button onclick="fb_logout()">Logout of Google</button>
+  <h1 id="title">Pin That Ball!</h1>
+  <h2 id="subtitle">+ Geodash</h2>
+  <button class="button" onclick="location.href='library.html'">Home</button>
+<button class="button" onclick="fb_login()">Login to submit highscore to leaderboard!</button>
 </body>
 </html>
 <!--***************************************************
