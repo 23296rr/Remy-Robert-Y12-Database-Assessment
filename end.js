@@ -1,3 +1,10 @@
+import {signingIn} from './fb_io.js'
+import {signedIn} from './fb_io.js';
+import {GLOBAL_user} from './fb_io.js';
+
+const HTML_OUTPUT = document.getElementById("databaseOutput");
+let element = document.getElementById("statusMessage");
+
 function setup() {
     console.log("Working", "Score: " + localStorage.getItem('score')) //checks if the score has correctly been pulled from storage
 

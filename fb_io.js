@@ -14,6 +14,9 @@ export let GLOBAL_user;
 
 window.fb_login = fb_login
 window.fb_logout = fb_logout
+window.openFormPopup = openFormPopup
+window.closeFormPopup = closeFormPopup
+window.handleFormSubmit = handleFormSubmit
 
 window.onload = (event) => {
   fb_login()
@@ -46,6 +49,7 @@ function fb_popupLogin() {
     console.log("User has logged in", GLOBAL_user["displayName"])
     signedIn = true
     signingIn = false
+    openFormPopup()
     console.log(signedIn)
     console.log(GLOBAL_user)
   });
@@ -58,5 +62,34 @@ function fb_logout() {
     signedIn = false
     signingIn = false
     console.log(signedIn)
+}
+
+
+function openFormPopup() {
+  document.getElementById("formModal").style.display = "block";
+}
+
+function closeFormPopup() {
+  document.getElementById("formModal").style.display = "none";
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  
+  const gametag = document.getElementById("gametag").value;
+  const age = document.getElementById("age").value;
+  
+  console.log("Form Submitted:", { age, gametag });
+  
+  closeFormPopup();
+  document.getElementById("popupForm").reset(); 
+
+  firebase.database().ref('/userInfo/' + GLOBAL_user["uid"]).set(
+    {
+        age: age,
+        gametag: gametag,
+        displayName: GLOBAL_user["displayName"],
+      }
+  )
 }
 

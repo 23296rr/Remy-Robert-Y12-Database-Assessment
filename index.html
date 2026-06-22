@@ -33,6 +33,26 @@
   BODY
 ****************************************************-->
 <body>
+<!-- The Popup Modal Overlay -->
+<div id="formModal" class="modal-overlay">
+  <!-- The Form Content Box -->
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeFormPopup()">&times;</span>
+    
+    <h2>Contact Us</h2>
+    <form id="popupForm" onsubmit="handleFormSubmit(event)">
+      <label for="gametag">Gametag:</label>
+      <input type="text" id="gametag" required>
+      
+      <label for="age">Age:</label>
+      <input type="number" id="age" required>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+
   <h1 id="title">Pin That Ball!</h1>
   <h2 id="subtitle">+ Geodash</h2>
   <button onclick="play()">Play</button>
