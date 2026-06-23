@@ -4,18 +4,21 @@ import {GLOBAL_user} from './fb_io.js';
 
 const HTML_OUTPUT = document.getElementById("databaseOutput");
 let element = document.getElementById("statusMessage");
-document.addEventListener("DOMContentLoaded", setup);
+
+let scoreDisplay
 
 window.submitScore = submitScore
+window.setup = setup
+window.draw = draw
 
 function setup() {
     console.log("Working", "Score: " + localStorage.getItem('score'))
 
+    createCanvas(500, 50);
+
     let score = localStorage.getItem('score');
     console.log("Score: " + score);
     
-    canvas = new Canvas(500, 50);
-
     scoreDisplay = new Sprite(225, 25, 0, 0);
     scoreDisplay.textSize = 24;
     scoreDisplay.text = "Final Score: " + score + '!';
@@ -28,13 +31,14 @@ function draw() {
 
 function submitScore() {
     if (signedIn == true) {
-    firebase.database().ref('/pinThatBall/' + GLOBAL_user["displayName"]).set(
-        {
-            gameTag: gametag,
-            score: score,
-            googleUID: GLOBAL_user["uid"],
-        }
-  )
+        firebase.database().ref('/pinThatBall/' + GLOBAL_user["displayName"]).set(
+            {
+                gameTag: gametag,
+                userScore: localStorage.getItem('score'),
+                googleUID: GLOBAL_user["uid"],
+            }
+        )
+        console.log("updated fb")
     } else {
         fb_login()
     }

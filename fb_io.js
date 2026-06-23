@@ -18,9 +18,6 @@ window.openForm = openForm
 window.closeForm = closeForm
 window.handleForm = handleForm
 
-
-
-
  // Set up a listener for the login state of the user.
 function fb_login() {
   authenticationListener = firebase.auth().onAuthStateChanged(fb_handleLogin);
@@ -30,6 +27,7 @@ function fb_login() {
 function fb_handleLogin(_user) {
   if (_user) {
     console.log("User is logged in")
+    signedIn = true
     GLOBAL_user = _user; // Save the user object to a global variable
   } else {
     console.log("User is NOT logged in - Starting the popup process")

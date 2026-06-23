@@ -8,6 +8,12 @@
 /*******************************************************/
 console.log("Running the game");
 
+import {signingIn} from './fb_io.js'
+import {signedIn} from './fb_io.js';
+import {GLOBAL_user} from './fb_io.js';
+
+const HTML_OUTPUT = document.getElementById("databaseOutput");
+let element = document.getElementById("statusMessage");
 
 // End game code
 function endGame(_player, _obstacle){
@@ -16,34 +22,22 @@ function endGame(_player, _obstacle){
     player.remove();
     obstacles.removeAll();
     // Put your database writes here:
+    if (signedIn == true) {
+        firebase.database().ref('/geoDash/' + GLOBAL_user["displayName"]).set(
+            {
+                gameTag: gametag,
+                userScore: score,
+                googleUID: GLOBAL_user["uid"],
+            }
+        )
+        console.log("updated fb")
+    } else {
+        fb_login()
+    }
 
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 200;
