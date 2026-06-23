@@ -15,3 +15,7 @@ function pinthatball() {
 function geodash() {
     window.location.href = "geodash.html"
 }
+
+function leaderboard() {
+    
+}

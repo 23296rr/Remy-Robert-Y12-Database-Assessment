@@ -19,7 +19,6 @@ const firebaseConfig = {
 	let timerR = 15
 
 	let score = 0;
-	// let outputScore;
 
 	let ballsSpawned = 1;
 

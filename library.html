@@ -33,11 +33,28 @@
   BODY
 ****************************************************-->
 <body>
+  <div id="formModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeFormPopup()">&times;</span>
+    
+    <h2>Contact Us</h2>
+    <form id="popupForm" onsubmit="handleFormSubmit(event)">
+      <label for="gametag">Gametag:</label>
+      <input type="text" id="gametag" required>
+      
+      <label for="age">Age:</label>
+      <input type="number" id="age" required>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
   <h1 id="title">Library</h1>
   <button onclick="pinthatball()">Pin That Ball</button>
   <button onclick="geodash()">Geodash</button>
   <button onclick="fb_login()">Login</button>
   <button onclick="fb_logout()">Logout of Google</button>
+  <button onclick="leaderboard()">Leaderboards</button>
 </body>
 </html>
 <!--***************************************************

@@ -1,17 +1,17 @@
 #indextitle {
-    /* padding-left: 39%; */
-    /* font-size: 450%; */
-    /* margin-bottom: 0px; */
-    /* margin-top: 10%; */
+    padding-left: 39%;
+    font-size: 450%;
+    margin-bottom: 0px;
+    margin-top: 10%;
 }
 
 #indexsubtitle  {
-    /* padding-left: 60%; */
-    /* font-size: 300%; */
-    /* margin-top: 0px; */
+    padding-left: 60%;
+    font-size: 300%;
+    margin-top: 0px;
 }
 
-#title {
+#pintitle {
     -webkit-text-stroke: 2px black;
     color:aliceblue;
     display: flex;
@@ -28,7 +28,7 @@
   margin-left: 47%;
 }
 
-body {
+.pinbody {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
