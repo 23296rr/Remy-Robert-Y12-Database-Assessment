@@ -47,6 +47,8 @@ function fb_popupLogin() {
     signedIn = true
     signingIn = false
     openForm()
+    document.getElementById("loginbutton").style.display = "none";
+    document.getElementById("logoutbutton").style.display = "block";
     console.log(signedIn)
     console.log(GLOBAL_user)
   });
@@ -58,6 +60,8 @@ function fb_logout() {
     console.log("hopeuflly logged out")
     signedIn = false
     signingIn = false
+    document.getElementById("loginbutton").style.display = "block";
+    document.getElementById("logoutbutton").style.display = "none";
     console.log(signedIn)
 }
 
@@ -80,7 +84,7 @@ function handleForm(event) {
   
   closeForm();
   document.getElementById("popupForm").reset(); 
-
+  
   firebase.database().ref('/userInfo/' + GLOBAL_user["uid"]).set(
     {
         age: age,
