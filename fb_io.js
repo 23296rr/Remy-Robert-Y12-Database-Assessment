@@ -17,9 +17,30 @@ window.fb_logout = fb_logout
 window.openForm = openForm
 window.closeForm = closeForm
 window.handleForm = handleForm
+window.fb_checkLogin = fb_checklogin
 
+window.onload = fb_checkLogin()
 
+function fb_checklogin() {
+  console.log("actually ran")
+  authenticationListener = firebase.auth().onAuthStateChanged(fb_checkingLogin);
+  
+}
 
+function fb_checkingLogin(_user) {
+  if (_user) {
+    console.log("User is logged in")
+    GLOBAL_user = _user; // Save the user object to a global variable
+    signedIn = true
+    document.getElementById("loginbutton").style.display = "none";
+    document.getElementById("logoutbutton").style.display = "block";
+  } else {
+    console.log("User is NOT logged in")
+    document.getElementById("loginbutton").style.display = "block";
+    document.getElementById("logoutbutton").style.display = "none";
+    signedIn = true
+  }
+}
 
  // Set up a listener for the login state of the user.
 function fb_login() {
@@ -31,6 +52,9 @@ function fb_handleLogin(_user) {
   if (_user) {
     console.log("User is logged in")
     GLOBAL_user = _user; // Save the user object to a global variable
+    signedIn = true
+    document.getElementById("loginbutton").style.display = "none";
+    document.getElementById("logoutbutton").style.display = "block";
   } else {
     console.log("User is NOT logged in - Starting the popup process")
     fb_popupLogin();
@@ -55,6 +79,7 @@ function fb_popupLogin() {
 }
 
 function fb_logout() {
+    fb_login()
     authenticationListener();
     firebase.auth().signOut();
     console.log("hopeuflly logged out")
@@ -77,10 +102,10 @@ function closeForm() {
 function handleForm(event) {
   event.preventDefault();
   
-  const gametag = document.getElementById("gametag").value;
+  const gameTag = document.getElementById("gameTag").value;
   const age = document.getElementById("age").value;
   
-  console.log("Form Submitted:", { age, gametag });
+  console.log("Form Submitted:", { age, gameTag });
   
   closeForm();
   document.getElementById("popupForm").reset(); 
@@ -88,7 +113,7 @@ function handleForm(event) {
   firebase.database().ref('/userInfo/' + GLOBAL_user["uid"]).set(
     {
         age: age,
-        gametag: gametag,
+        gametag: gameTag,
         displayName: GLOBAL_user["displayName"],
       }
   )

@@ -19,6 +19,13 @@
   align-items: center;
 }
 
+#loginbutton {
+  display: block;
+}
+
+#logoutbutton {
+  display: none;
+}
 
 /* Pin That Ball CSS */
 

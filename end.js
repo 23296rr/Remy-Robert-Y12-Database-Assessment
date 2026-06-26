@@ -28,13 +28,14 @@ function draw() {
 
 function submitScore() {
     if (signedIn == true) {
-    firebase.database().ref('/pinThatBall/' + GLOBAL_user["displayName"]).set(
-        {
-            gameTag: gametag,
-            score: score,
-            googleUID: GLOBAL_user["uid"],
-        }
+        firebase.database().ref('/pinThatBall/' + GLOBAL_user["uid"]).set(
+            {
+                gametag: gameTag,
+                score: localStorage.getItem('score'),
+                // displayname: GLOBAL_user["uid"],
+            }
   )
+  console.log("score submitted to fb")
     } else {
         fb_login()
     }
