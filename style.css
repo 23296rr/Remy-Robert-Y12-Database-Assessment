@@ -106,6 +106,18 @@
   justify-content: center;
 }
 
+#restartbutton {
+  margin-right: 0px;
+}
+
+#pinhomebutton {
+  transform: translate(90px, -40px);
+}
+
+#logInScoreButton {
+  transform: translate();
+}
+
 
 /* Form popup CSS*/
 

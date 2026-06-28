@@ -10,16 +10,19 @@ let scoreDisplay
 window.submitScore = submitScore
 window.setup = setup
 window.draw = draw
+window.onload = submitScore
+
+fb_checklogin(submitScore); 
 
 function setup() {
     console.log("Working", "Score: " + localStorage.getItem('score'))
 
-    createCanvas(500, 50);
+    createCanvas(250, 50, 500);
 
     let score = localStorage.getItem('score');
     console.log("Score: " + score);
     
-    scoreDisplay = new Sprite(225, 25, 0, 0);
+    scoreDisplay = new Sprite(125, 25, 0, 0);
     scoreDisplay.textSize = 24;
     scoreDisplay.text = "Final Score: " + score + '!';
     console.log("working")
@@ -35,11 +38,16 @@ function submitScore() {
             {
                 gametag: gameTag,
                 score: localStorage.getItem('score'),
-                // displayname: GLOBAL_user["uid"],
+                // displayname: GLOBAL_user["displayName"], 
             }
-  )
-  console.log("score submitted to fb")
+        )
+        document.getElementById("loginbutton").style.display = "none";
+        document.getElementById("logoutbutton").style.display = "none";
+        console.log("score submitted to fb")
     } else {
-        fb_login()
+        fb_checklogin()
+        console.log("didnt submit scores to fb")
+        document.getElementById("loginbutton").style.display = "block";
+        document.getElementById("logoutbutton").style.display = "none";
     }
 }

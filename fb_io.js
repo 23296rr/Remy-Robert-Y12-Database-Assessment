@@ -21,10 +21,12 @@ window.fb_checkLogin = fb_checklogin
 
 window.onload = fb_checkLogin()
 
-function fb_checklogin() {
+function fb_checklogin(callback) {
   console.log("actually ran")
   authenticationListener = firebase.auth().onAuthStateChanged(fb_checkingLogin);
-  
+  setTimeout(() => {
+      callback();
+    }, 2000);
 }
 
 function fb_checkingLogin(_user) {
@@ -42,9 +44,11 @@ function fb_checkingLogin(_user) {
   }
 }
 
- // Set up a listener for the login state of the user.
-function fb_login() {
+function fb_login(callback) {
   authenticationListener = firebase.auth().onAuthStateChanged(fb_handleLogin);
+  setTimeout(() => {
+      callback();
+    }, 2000);
 }
 
 // Run when the login state of the user changes.
