@@ -2,17 +2,16 @@ import {signingIn} from './fb_io.js'
 import {signedIn} from './fb_io.js';
 import {GLOBAL_user} from './fb_io.js';
 
+
 const HTML_OUTPUT = document.getElementById("databaseOutput");
 let element = document.getElementById("statusMessage");
 
 let scoreDisplay
 
+window.addEventListener('runSubmitScore', submitScore);
 window.submitScore = submitScore
 window.setup = setup
 window.draw = draw
-window.onload = submitScore
-
-fb_checklogin(submitScore); 
 
 function setup() {
     console.log("Working", "Score: " + localStorage.getItem('score'))
@@ -32,7 +31,7 @@ function draw() {
     background("#f0f0f0")
 }
 
-function submitScore() {
+function submitScore(event) {
     if (signedIn == true) {
         firebase.database().ref('/pinThatBall/' + GLOBAL_user["uid"]).set(
             {
@@ -45,7 +44,6 @@ function submitScore() {
         document.getElementById("logoutbutton").style.display = "none";
         console.log("score submitted to fb")
     } else {
-        fb_checklogin()
         console.log("didnt submit scores to fb")
         document.getElementById("loginbutton").style.display = "block";
         document.getElementById("logoutbutton").style.display = "none";

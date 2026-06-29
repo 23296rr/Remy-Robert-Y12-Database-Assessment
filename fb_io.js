@@ -21,12 +21,9 @@ window.fb_checkLogin = fb_checklogin
 
 window.onload = fb_checkLogin()
 
-function fb_checklogin(callback) {
+function fb_checklogin() {
   console.log("actually ran")
   authenticationListener = firebase.auth().onAuthStateChanged(fb_checkingLogin);
-  setTimeout(() => {
-      callback();
-    }, 2000);
 }
 
 function fb_checkingLogin(_user) {
@@ -42,6 +39,8 @@ function fb_checkingLogin(_user) {
     document.getElementById("logoutbutton").style.display = "none";
     signedIn = true
   }
+  const signal = new CustomEvent('runSubmitScore',);
+  window.dispatchEvent(signal);
 }
 
 function fb_login(callback) {
