@@ -18,12 +18,12 @@ function setup() {
 
     createCanvas(250, 50, 500);
 
-    let score = localStorage.getItem('score');
-    console.log("Score: " + score);
+    let pinScore = localStorage.getItem('score');
+    console.log("Score: " + pinScore);
     
     scoreDisplay = new Sprite(125, 25, 0, 0);
     scoreDisplay.textSize = 24;
-    scoreDisplay.text = "Final Score: " + score + '!';
+    scoreDisplay.text = "Final Score: " + pinScore + '!';
     console.log("working")
 }
 
@@ -33,11 +33,13 @@ function draw() {
 
 function submitScore(event) {
     if (signedIn == true) {
+        document.getElementById("loginbutton").style.display = "none";
+        document.getElementById("logoutbutton").style.display = "none";
         firebase.database().ref('/pinThatBall/' + GLOBAL_user["uid"]).set(
             {
                 gametag: gameTag,
                 score: localStorage.getItem('score'),
-                // displayname: GLOBAL_user["displayName"], 
+                displayname: GLOBAL_user["displayName"], 
             }
         )
         document.getElementById("loginbutton").style.display = "none";

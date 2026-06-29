@@ -18,7 +18,7 @@ const firebaseConfig = {
 	let timerL = 15
 	let timerR = 15
 
-	let score = 0;
+	let pinScore = 0;
 
 	let ballsSpawned = 1;
 
@@ -199,8 +199,8 @@ function ball3() {
 function draw() {
 	background("grey")
 	// displays the score on the screen
-	scoreDisplay.text = "Score: " + score;
-	localStorage.setItem('score', score);
+	scoreDisplay.text = "Score: " + pinScore;
+	localStorage.setItem('score', pinScore);
 
 	/*controls for left flipper*/
 	if (kb.pressing('left')) {
@@ -278,16 +278,16 @@ function draw() {
 		
 	/*adding to score when the ball hits the point box*/
 	if (ballGroup.overlaps(pointBoxL)) {
-		score = score + 100000;
-		console.log(score)
+		pinScore = pinScore + 100000;
+		console.log(pinScore)
 	}
 	if (ballGroup.overlaps(pointBoxR)) {
-		score = score + 100000;
-		console.log(score)
+		pinScore = pinScore + 100000;
+		console.log(pinScore)
 	}
 	// if ball hits obstacle add points
 	if (ballGroup.collides(obstacleGroup)) {
-		score = score + 10000
+		pinScore = pinScore + 10000
 	}
 	// makes the obstacles and point boxes change color when hit
 	if (ballGroup.collides(obstacle1)) {
