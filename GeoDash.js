@@ -17,7 +17,7 @@ let element = document.getElementById("statusMessage");
 
 // End game code
 function endGame(_player, _obstacle){
-    console.log("Game ended, you got "+score+" points.")
+    console.log("Game ended, you got "+geoScore+" points.")
     screenSelector = "end";
     player.remove();
     obstacles.removeAll();
@@ -26,7 +26,7 @@ function endGame(_player, _obstacle){
         firebase.database().ref('/geoDash/' + GLOBAL_user["displayName"]).set(
             {
                 gameTag: gametag,
-                userScore: score,
+                userScore: geoScore,
                 googleUID: GLOBAL_user["uid"],
             }
         )
@@ -50,7 +50,7 @@ const OBSTACLE_WIDTH = PLAYER_WIDTH;
 
 var spawnDist = 0;
 var nextSpawn = 0;
-var score = 0;
+var geoScore = 0;
 var player;
   
 var screenSelector = "start";  
@@ -125,7 +125,7 @@ function startScreen(){
 function gameScreen(){
     background("#C39BD3");
     allSprites.visible = true;
-    score++;
+    geoScore++;
     if(frameCount> nextSpawn){
         newObstacle();
         nextSpawn = frameCount + random(10,100);
@@ -134,7 +134,7 @@ function gameScreen(){
     fill(255);
     stroke(0);
     strokeWeight(4);
-    text(score, 50, 50);
+    text(geoScore, 50, 50);
 }
 
 function endScreen(){
@@ -147,7 +147,7 @@ function endScreen(){
     strokeWeight(4);
     text("You died! Too bad :-(", 50, 50);
     textSize(24);
-    text("your score was: "+score, 50, 110);
+    text("your score was: "+geoScore, 50, 110);
     textSize(14);
     text("press any key to restart", 50, 150);
 }
@@ -156,7 +156,7 @@ function resetGame(){
     player = new Sprite(PLAYER_WIDTH*1.2,  SCREEN_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT, 'd');
     player.color = color("purple");
     player.collides(obstacles, endGame);
-    score = 0;
+    geoScore = 0;
 }
 
 /*******************************************************/

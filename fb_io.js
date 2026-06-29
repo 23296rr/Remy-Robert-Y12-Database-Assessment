@@ -42,6 +42,7 @@ function fb_checkingLogin(_user) {
     document.getElementById("logoutbutton").style.display = "none";
     signedIn = true
   }
+  submitScore
 }
 
 function fb_login(callback) {
