@@ -15,14 +15,26 @@ import {GLOBAL_user} from './fb_io.js';
 const HTML_OUTPUT = document.getElementById("databaseOutput");
 let element = document.getElementById("statusMessage");
 
-window.addEventListener('runSubmitScore', submitScore);
-window.submitScore = submitScore
+window.endGame = endGame
+window.setup = setup;
+window.draw = draw;
+window.newObstacle = newObstacle;
+window.startScreen = startScreen
+window.gameScreen = gameScreen
+window.endScreen = endScreen
+window.resetGame = resetGame
 
-function submitScore(event) {
+// End game code
+function endGame(_player, _obstacle){
+    console.log("Game ended, you got "+geoScore+" points.")
+    screenSelector = "end";
+    player.remove();
+    obstacles.removeAll();
+    // Put your database writes here:
     if (signedIn == true) {
         document.getElementById("loginbutton").style.display = "none";
         document.getElementById("logoutbutton").style.display = "none";
-        firebase.database().ref('/pinThatBall/' + GLOBAL_user["uid"]).set(
+        firebase.database().ref('/geoDash/' + GLOBAL_user["uid"]).set(
             {
                 gametag: gameTag,
                 score: localStorage.getItem('score'),
@@ -37,32 +49,7 @@ function submitScore(event) {
         document.getElementById("loginbutton").style.display = "block";
         document.getElementById("logoutbutton").style.display = "none";
     }
-}
-/*
-// End game code
-function endGame(_player, _obstacle){
-    console.log("Game ended, you got "+geoScore+" points.")
-    screenSelector = "end";
-    player.remove();
-    obstacles.removeAll();
-    // Put your database writes here:
-    if (signedIn == true) {
-        firebase.database().ref('/geoDash/' + GLOBAL_user["displayName"]).set(
-            {
-                gameTag: gametag,
-                userScore: geoScore,
-                googleUID: GLOBAL_user["uid"],
-            }
-        )
-        console.log("updated fb")
-    } else {
-        fb_login()
-    }
 }      
-*/
-
-
-
 
 const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 200;
@@ -85,6 +72,7 @@ var obstacles;
 // setup()
 /*******************************************************/
 function setup() {
+    console.log("dwdawd")
     cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     
     obstacles = new Group();
@@ -183,7 +171,6 @@ function resetGame(){
     player.collides(obstacles, endGame);
     geoScore = 0;
 }
-
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
