@@ -15,18 +15,30 @@ import {GLOBAL_user} from './fb_io.js';
 const HTML_OUTPUT = document.getElementById("databaseOutput");
 let element = document.getElementById("statusMessage");
 
+window.submitScore = submitScore
 window.endGame = endGame
 window.setup = setup;
 window.draw = draw;
 window.newObstacle = newObstacle;
-window.startScreen = startScreen
-window.gameScreen = gameScreen
-window.endScreen = endScreen
-window.resetGame = resetGame
+window.startScreen = startScreen;
+window.gameScreen = gameScreen;
+window.endScreen = endScreen;
+window.resetGame = resetGame;
+
+function submitScore() {
+    if (signedIn == true) {
+        document.getElementById("loginbutton").style.display = "none";
+        document.getElementById("logoutbutton").style.display = "none";
+    } else {
+        console.log("didnt submit scores to fb")
+        document.getElementById("loginbutton").style.display = "block";
+        document.getElementById("logoutbutton").style.display = "none";
+    }
+}
 
 // End game code
 function endGame(_player, _obstacle){
-    console.log("Game ended, you got "+geoScore+" points.")
+    console.log("Game ended, you got " + geoScore + " points.")
     screenSelector = "end";
     player.remove();
     obstacles.removeAll();
@@ -34,18 +46,21 @@ function endGame(_player, _obstacle){
     if (signedIn == true) {
         document.getElementById("loginbutton").style.display = "none";
         document.getElementById("logoutbutton").style.display = "none";
-        firebase.database().ref('/geoDash/' + GLOBAL_user["uid"]).set(
-            {
-                gametag: gameTag,
-                score: localStorage.getItem('score'),
-                displayname: GLOBAL_user["displayName"], 
-            }
-        )
-        document.getElementById("loginbutton").style.display = "none";
-        document.getElementById("logoutbutton").style.display = "none";
-        console.log("score submitted to fb")
-    } else {
-        console.log("didnt submit scores to fb")
+
+        firebase.database().ref('/geoDash/' + GLOBAL_user["uid"]).once('value').then((snapshot) => {
+                let userData = snapshot.val();
+                let oldScore = (userData && userData.score)
+                if (geoScore > oldScore) {
+                    firebase.database().ref('/geoDash/' + GLOBAL_user["uid"]).set({
+                        gametag: gameTag,
+                        score: geoScore,
+                        displayname: GLOBAL_user["displayName"], 
+                    });
+                    console.log("high score submitted to fb");
+                }   
+        });
+    } else if (signedIn == false) {
+        console.log("didnt submit scores to fb");
         document.getElementById("loginbutton").style.display = "block";
         document.getElementById("logoutbutton").style.display = "none";
     }
@@ -72,12 +87,11 @@ var obstacles;
 // setup()
 /*******************************************************/
 function setup() {
-    console.log("dwdawd")
-    cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
-    
+    let cnv = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+
     obstacles = new Group();
 
-    floor =  new Sprite(SCREEN_WIDTH/2,  SCREEN_HEIGHT, SCREEN_WIDTH, 4, 's');
+    let floor =  new Sprite(SCREEN_WIDTH/2,  SCREEN_HEIGHT, SCREEN_WIDTH, 4, 's');
     floor.color = color("black");
     world.gravity.y = 80;
     
@@ -112,7 +126,7 @@ function draw() {
 }
 
 function newObstacle(){
-    obstacle = new Sprite((SCREEN_WIDTH + 50),  SCREEN_HEIGHT - OBSTACLE_HEIGHT/2, OBSTACLE_WIDTH, OBSTACLE_HEIGHT, 'k');
+    let obstacle = new Sprite((SCREEN_WIDTH + 50),  SCREEN_HEIGHT - OBSTACLE_HEIGHT/2, OBSTACLE_WIDTH, OBSTACLE_HEIGHT, 'k');
     obstacle.color = color("yellow");
     obstacle.vel.x = -10;
     
@@ -123,6 +137,9 @@ function newObstacle(){
 
 function startScreen(){
     background("white");
+
+    document.getElementById("loginbutton").style.display = "none";
+    document.getElementById("logoutbutton").style.display = "none";
 
     allSprites.visible = false;
     textSize(32);

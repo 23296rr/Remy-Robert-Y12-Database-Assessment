@@ -196,3 +196,101 @@ button:active {
 }
 
 .close-btn:hover { color: white; }
+
+
+/* =========================================
+   LEADERBOARD MODAL CONTAINER
+========================================= */
+.leaderboard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75); /* Dims the game screen */
+    backdrop-filter: blur(5px);            /* Elegant background blur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;                         /* Forces it on top of p5 canvas */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;  /* Smooth fade in */
+}
+
+/* When this class is added via JS, the board fades in */
+.leaderboard-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- THE SCOREBOARD BOX --- */
+.leaderboard-box {
+    background: #1a1a24;                   /* Slick dark theme background */
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 3px solid #C39BD3;             /* Matches your game screen purple */
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+    position: relative;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.leaderboard-box h2 {
+    margin-top: 0;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #F4D03F;                        /* Gold header text */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- CLOSE BUTTON --- */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff4d4d;                        /* Turns red on hover */
+}
+
+/* --- TABLE LAYOUT --- */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leaderboard-table th, 
+.leaderboard-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333344;
+}
+
+.leaderboard-table th {
+    color: #C39BD3;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Highlight Podium Finishes */
+.leaderboard-table tr.rank-1 td { color: #F4D03F; font-weight: bold; } /* Gold */
+.leaderboard-table tr.rank-2 td { color: #BDC3C7; font-weight: bold; } /* Silver */
+.leaderboard-table tr.rank-3 td { color: #E67E22; font-weight: bold; } /* Bronze */
+
+/* Hover effects for rows */
+.leaderboard-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}

@@ -53,11 +53,55 @@
   <div class="librarybuttons">
     <button onclick="pinthatball()">Pin That Ball</button>
     <button onclick="geodash()">Geodash</button>
-    <button onclick="leaderboard()">Leaderboards</button>
+    <button onclick="toggleLeaderboard()">Leaderboards</button>
     <br>
     <button id="loginbutton" onclick="fb_login()">Login</button>
     <button id="logoutbutton" onclick="fb_logout()">Logout</button>    
   </div>
+
+
+/*******************************************************************************************/
+                    AI DO NOT USE/NEED TO CHANGE
+/*******************************************************************************************/
+<div id="leaderboardModal" class="leaderboard-overlay">
+    <div class="leaderboard-box">
+        <button class="close-btn" onclick="toggleLeaderboard()">&times;</button>
+        
+        <h2>🏆 TOP PLAYERS 🏆</h2>
+        
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardRows">
+                <tr class="rank-1">
+                    <td>1st</td>
+                    <td>MrBritton</td>
+                    <td>9999</td>
+                </tr>
+                <tr class="rank-2">
+                    <td>2nd</td>
+                    <td>PlayerTwo</td>
+                    <td>7500</td>
+                </tr>
+                <tr class="rank-3">
+                    <td>3rd</td>
+                    <td>NoobMaster</td>
+                    <td>4200</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+/*******************************************************************************************/
+
+
+
+
 </body>
 </html>
 <!--***************************************************

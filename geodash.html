@@ -40,10 +40,9 @@
 <body>
   <h1 id="title">Pin That Ball!</h1>
   <h2 id="subtitle">+ Geodash</h2>
-  <button class="pinbuttons" id="restartbutton" onclick="location.href='difficulty.html'">Restart</button>
   <button class="pinbuttons" id="pinhomebutton" onclick="location.href='library.html'">Home</button>
-  <button id="logoutbutton" class="pinbuttons" onclick="submitScore()">Please sign in to submit highscore to leaderboard!</button>
-  <button id="loginbutton" class="pinbuttons" onclick="submitScore()">Please sign in to submit highscore to leaderboard!</button>
+  <button id="logoutbutton" class="pinbuttons" onclick="fb_login(); fb_checklogin()">Please sign in to submit highscore to leaderboard!</button>
+  <button id="loginbutton" class="pinbuttons" onclick="fb_login(); fb_checklogin()">Please sign in to submit highscore to leaderboard!</button>
 </body>
 </html>
 <!--***************************************************

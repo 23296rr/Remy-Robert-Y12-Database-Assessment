@@ -37,7 +37,7 @@ function fb_checkingLogin(_user) {
     console.log("User is NOT logged in")
     document.getElementById("loginbutton").style.display = "block";
     document.getElementById("logoutbutton").style.display = "none";
-    signedIn = true
+    signedIn = false
   }
   const signal = new CustomEvent('runSubmitScore',);
   window.dispatchEvent(signal);
@@ -110,7 +110,7 @@ function handleForm(event) {
   const age = document.getElementById("age").value;
   
   console.log("Form Submitted:", { age, gameTag });
-  
+  fb_checklogin()
   closeForm();
   document.getElementById("popupForm").reset(); 
   
