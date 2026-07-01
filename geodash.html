@@ -43,6 +43,22 @@
   <button class="pinbuttons" id="pinhomebutton" onclick="location.href='library.html'">Home</button>
   <button id="logoutbutton" class="pinbuttons" onclick="fb_login(); fb_checklogin()">Please sign in to submit highscore to leaderboard!</button>
   <button id="loginbutton" class="pinbuttons" onclick="fb_login(); fb_checklogin()">Please sign in to submit highscore to leaderboard!</button>
+  <div id="formModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeForm()">&times;</span>
+    
+    <h2>Submit Form</h2>
+    <form id="popupForm" onsubmit="handleForm(event)">
+      <label for="gameTag">Gametag:</label>
+      <input type="text" id="gameTag" required>
+      
+      <label for="age">Age:</label>
+      <input type="number" id="age" min="12" max="120" required>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
 <!--***************************************************
